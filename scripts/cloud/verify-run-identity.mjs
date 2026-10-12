@@ -14,6 +14,16 @@ url.searchParams.set('audience',updateTrust.audience);
 const response=await fetch(url,{headers:{Authorization:`Bearer ${bearer}`},redirect:'error',signal:AbortSignal.timeout(15000)});
 if(!response.ok)throw Error(`GitHub identity request failed: HTTP ${response.status}`);
 const {value}=await response.json();
-const identity=await verifyUpdateIdentity(value);
+let identity;
+try {
+  identity=await verifyUpdateIdentity(value);
+} catch {
+  // Only public routing metadata, never the token, signature, actor or request bearer.
+  const decoded=JSON.parse(Buffer.from(value.split('.')[1],'base64url'));
+  const keys=['sub','event_name','workflow_ref','job_workflow_ref'];
+  console.error(JSON.stringify({identity_verified:false,routing:Object.fromEntries(keys.map(k=>[k,decoded[k]??null]))}));
+  console.error('Cloud identity rejected; no website write was attempted.');
+  process.exit(1);
+}
 if(identity.runId!==process.env.GITHUB_RUN_ID || identity.commit!==process.env.GITHUB_SHA)throw Error('Runner identity does not match this job');
 console.log(JSON.stringify({identity_verified:true,repository:updateTrust.repository,run_id:identity.runId,source_commit:identity.commit}));
