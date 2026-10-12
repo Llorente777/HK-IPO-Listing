@@ -23,6 +23,19 @@ class PipelineRules(unittest.TestCase):
         self.assertEqual(retain_prior_application_history([fresh],[],previous,'2026-10-07'),[fresh])
         self.assertEqual(retain_prior_application_history([],[],{**previous,'snapshot_date':'2026-10-08'},'2026-10-07'),[])
 
+    def test_same_day_refresh_keeps_saved_missing_index_evidence(self):
+        old = {'application_id': '123', 'company_name': '历史公司',
+               'status_code': 'A', 'latest_document_date': '2026-10-11',
+               'documents': [{'date': '2026-10-11', 'document_type': 'AP'}]}
+        previous = {'snapshot_date': '2026-10-12', 'generated_at': '2026-10-12T09:00:00+08:00',
+                    'active_applications': [old]}
+        retained = retain_prior_application_history([], [], previous, '2026-10-12')
+        self.assertEqual(len(retained), 1)
+        self.assertEqual(retained[0]['history_retained_source_date'], '2026-10-12')
+        self.assertEqual(retained[0]['status_code'], 'U')
+        self.assertEqual(retained[0]['documents'], old['documents'])
+        self.assertEqual(retain_prior_application_history([], [old], previous, '2026-10-12'), [])
+
     def test_live_listing_reconciliation_excludes_tentative_and_etf(self):
         def row(day, name, code, stamp):
             cells = [day, name, code, "100", "#", "", stamp, "%", "New Listing", ""]

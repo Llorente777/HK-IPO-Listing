@@ -21,12 +21,16 @@ for(const dir of roots)walk(dir);
 const inventory=[];
 for(const name of [...new Set(files)].sort()) {
   if(!existsSync(join(root,name)))throw Error('Missing required export: '+name);
-  const bytes=readFileSync(join(root,name));
+  // Cloud bootstrap uses published bytes; export the same canonical bytes to
+  // avoid needless multi-megabyte formatting changes on every subsequent run.
+  const published = name.startsWith('data/processed/') ? 'public/data/'+name.split('/').pop() : null;
+  const bytes=readFileSync(join(root,published||name));
+  if(published && JSON.stringify(JSON.parse(bytes))!==JSON.stringify(JSON.parse(readFileSync(join(root,name)))))throw Error('Processed/public mismatch: '+name);
   if(/\.(?:json|tsx?|mjs|py|ya?ml|md|csv)$/.test(name)) {
     const s=bytes.toString('utf8');
     if(/(?:ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|sk-proj-[A-Za-z0-9_-]{30,}|-----BEGIN (?:RSA |OPENSSH )?PRIVATE KEY-----)/.test(s))throw Error('Possible secret; export blocked: '+name);
   }
-  const dest=join(target,name);mkdirSync(dirname(dest),{recursive:true});copyFileSync(join(root,name),dest);
+  const dest=join(target,name);mkdirSync(dirname(dest),{recursive:true});copyFileSync(join(root,published||name),dest);
   inventory.push({name,bytes:bytes.length,sha256:sha256(bytes)});
 }
 // Preserve earlier public evidence needed for sponsor recovery and delisted indexes.

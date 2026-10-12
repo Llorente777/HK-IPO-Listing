@@ -204,10 +204,24 @@ STATUS_LABELS = {
 
 
 class Fetcher:
-    def __init__(self) -> None:
+    def __init__(self, diagnostic_dir: Path | None = None) -> None:
         self.last_request = 0.0
         self.manifest: list[dict[str, Any]] = []
         self.rate_lock = threading.Lock()
+        self.diagnostic_lock = threading.Lock()
+        self.diagnostic_dir = diagnostic_dir
+        if diagnostic_dir is not None:
+            diagnostic_dir.mkdir(parents=True, exist_ok=False)
+
+    def record_attempt(self, record: dict[str, Any]) -> None:
+        # Separate from the successful raw_manifest: rollback must not erase
+        # this run's errors or relabel the previous run's downloads as fresh.
+        if self.diagnostic_dir is None:
+            return
+        record = {"observed_at": datetime.now(HK_TZ).isoformat(timespec="seconds"), **record}
+        with self.diagnostic_lock:
+            with (self.diagnostic_dir / "requests.jsonl").open("a", encoding="utf-8") as stream:
+                stream.write(json.dumps(record, ensure_ascii=False) + "\n")
 
     def get(self, url: str, *, referer: str | None = None, retries: int = 3) -> bytes:
         for attempt in range(retries):
@@ -223,10 +237,15 @@ class Fetcher:
             try:
                 with urllib.request.urlopen(request, timeout=75) as response:
                     payload = response.read()
+                    self.record_attempt({"url": url, "attempt": attempt + 1,
+                                         "status": "downloaded", "http_status": response.status,
+                                         "bytes": len(payload)})
                     return payload
-            except Exception:
+            except Exception as error:
+                self.record_attempt({"url": url, "attempt": attempt + 1, "status": "failed",
+                                     "error_type": type(error).__name__, "error": str(error)[:1000]})
                 if attempt + 1 == retries:
-                    raise
+                    raise RuntimeError(f"Official source failed after {retries} attempts: {url}: {error}") from error
                 time.sleep(1.2 * (attempt + 1))
         raise RuntimeError("unreachable")
 
@@ -2349,7 +2368,7 @@ def retain_prior_application_history(history, active, previous, snapshot_date):
     """
     present = {str(r['application_id']) for r in history + active}
     retained = []
-    if not previous or previous.get('snapshot_date', '9999') >= snapshot_date:
+    if not previous or previous.get('snapshot_date', '9999') > snapshot_date:
         return history
     former = {str(r['application_id']): r for r in previous.get('application_history', [])}
     former.update({str(r['application_id']): r for r in previous.get('active_applications', [])})
@@ -2377,7 +2396,8 @@ def main() -> int:
     for directory in (RAW, PROCESSED, REFERENCE, SNAPSHOTS, PUBLIC_DATA):
         directory.mkdir(parents=True, exist_ok=True)
 
-    fetcher = Fetcher()
+    run_stamp = datetime.now(HK_TZ).strftime("%Y%m%dT%H%M%S%f")
+    fetcher = Fetcher(DATA / "raw" / "run-attempts" / run_stamp)
     generated_at = datetime.now(HK_TZ).isoformat(timespec="seconds")
     snapshot_day = date.fromisoformat(arguments.snapshot_date) if arguments.snapshot_date else datetime.now(HK_TZ).date()
     if snapshot_day > datetime.now(HK_TZ).date():
@@ -2507,7 +2527,9 @@ def main() -> int:
                 if observation:
                     application_history.append(observation)
     simplify_records(application_history, ("company_name", "status"))
-    prior_paths = sorted((p for p in SNAPSHOTS.glob('????-??-??*.json') if p.name[:10] < snapshot_date), key=lambda p: json.loads(p.read_text(encoding='utf-8')).get('generated_at', ''), reverse=True)
+    # Re-running on the same day must preserve the latest already-saved evidence.
+    # Weekly comparison below keeps its separate, strictly earlier-day baseline.
+    prior_paths = sorted((p for p in SNAPSHOTS.glob('????-??-??*.json') if p.name[:10] <= snapshot_date), key=lambda p: json.loads(p.read_text(encoding='utf-8')).get('generated_at', ''), reverse=True)
     prior = json.loads(prior_paths[0].read_text(encoding='utf-8')) if prior_paths else None
     application_history = retain_prior_application_history(application_history, active_apps, prior, snapshot_date)
 

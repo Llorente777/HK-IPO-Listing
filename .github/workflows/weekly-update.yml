@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 concurrency:
   group: weekly-official-data-update
@@ -39,6 +40,8 @@ jobs:
           cache: pip
       - run: python -m pip install -r requirements.txt
       - run: pnpm install --frozen-lockfile
+      - name: Verify fixed-repository cloud identity without storing credentials
+        run: node scripts/cloud/verify-run-identity.mjs
       - name: Restore previous evidence without redating it
         run: node scripts/cloud/bootstrap.mjs
       - name: Verify saved baseline before collection
@@ -64,6 +67,7 @@ jobs:
           path: |
             data/raw_manifest.json
             data/raw/official
+            data/raw/run-attempts
             data/snapshots
             outputs/cloud-release
           if-no-files-found: error
@@ -73,6 +77,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: failed-run-diagnostics-${{ github.run_id }}
-          path: data/raw_manifest.json
+          path: |
+            data/raw/run-attempts
+            outputs/update-failures
           if-no-files-found: ignore
           retention-days: 14
