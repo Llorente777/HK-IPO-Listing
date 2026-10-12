@@ -1,0 +1,5 @@
+# Only these native build helpers may run dependency install scripts.
+allowBuilds:
+  esbuild: true
+  sharp: true
+  workerd: true
