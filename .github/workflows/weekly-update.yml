@@ -1,0 +1,78 @@
+name: Official data cloud validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      refresh_official:
+        description: "重新采集官方源；关闭时仅验证已保存快照（不会冒称数据已更新）"
+        type: boolean
+        default: true
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-official-data-update
+  cancel-in-progress: false
+
+jobs:
+  update-validate-save:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      TZ: Asia/Hong_Kong
+      PYTHONUTF8: "1"
+      CLOUD_REFRESH_OFFICIAL: ${{ inputs.refresh_official }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: pnpm install --frozen-lockfile
+      - name: Restore previous evidence without redating it
+        run: node scripts/cloud/bootstrap.mjs
+      - name: Verify saved baseline before collection
+        run: pnpm data:validate
+      - run: node --test tests/cloud-bootstrap.test.mjs
+      - name: Collect HKEX HKEXnews SSE SZSE
+        if: inputs.refresh_official
+        run: pnpm data:update
+        env:
+          HKIPO_FORCE_REFRESH: "1"
+          HKIPO_RATE_SECONDS: "0.75"
+      - run: pnpm data:validate
+      - run: python -m unittest discover -s tests -p "test_*.py"
+      - run: pnpm build
+      - run: pnpm exec tsc --noEmit
+      - run: pnpm test
+      - name: Package only after all gates pass
+        run: node scripts/cloud/package-release.mjs
+      - name: Preserve official evidence and immutable snapshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-data-${{ github.run_id }}
+          path: |
+            data/raw_manifest.json
+            data/raw/official
+            data/snapshots
+            outputs/cloud-release
+          if-no-files-found: error
+          retention-days: 90
+      - name: Preserve failure evidence, not a publishable snapshot
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-run-diagnostics-${{ github.run_id }}
+          path: data/raw_manifest.json
+          if-no-files-found: ignore
+          retention-days: 14

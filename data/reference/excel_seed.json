@@ -1,0 +1,409 @@
+{
+  "role": "Previously published official A/H identity mappings; not a user workbook",
+  "generated_at": "2026-10-12T11:07:25+08:00",
+  "listed_mappings": [
+    {
+      "hk_code": "09607",
+      "a_code": "603650",
+      "company_name": "彤程新材料集团股份有限公司",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "03757",
+      "a_code": "300757",
+      "company_name": "罗博特科智能科技股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "03228",
+      "a_code": "603228",
+      "company_name": "深圳市景旺电子股份有限公司 - H 股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "06727",
+      "a_code": "688031",
+      "company_name": "星环信息科技(上海）股份有限公司 - H 股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "09976",
+      "a_code": "301308",
+      "company_name": "深圳市江波龙电子股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "03223",
+      "a_code": "300223",
+      "company_name": "北京君正集成电路股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "03308",
+      "a_code": "300308",
+      "company_name": "中际旭创股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "06745",
+      "a_code": "601678",
+      "company_name": "滨化集团股份有限公司 - H 股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02249",
+      "a_code": "688249",
+      "company_name": "合肥晶合集成电路股份有限公司 - H 股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "00537",
+      "a_code": "688337",
+      "company_name": "普源精电科技股份有限公司 - H 股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "01377",
+      "a_code": "301377",
+      "company_name": "广东鼎泰高科技术股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02475",
+      "a_code": "002475",
+      "company_name": "立讯精密工业股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "06951",
+      "a_code": "300408",
+      "company_name": "潮州三环（集团）股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "00668",
+      "a_code": "300866",
+      "company_name": "安克创新科技股份有限公司 - H 股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "01688",
+      "a_code": "002600",
+      "company_name": "广东领益智造股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "03661",
+      "a_code": "300661",
+      "company_name": "圣邦微电子（北京）股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "09630",
+      "a_code": "688630",
+      "company_name": "合肥芯碁微电子装备股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "06067",
+      "a_code": "300568",
+      "company_name": "深圳市星源材质科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "01081",
+      "a_code": "002487",
+      "company_name": "大金重工股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "01187",
+      "a_code": "301087",
+      "company_name": "可孚医疗科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02493",
+      "a_code": "688062",
+      "company_name": "迈威(上海)生物科技股份有限公司 - B - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "03296",
+      "a_code": "603296",
+      "company_name": "华勤技术股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02476",
+      "a_code": "300476",
+      "company_name": "胜宏科技(惠州)股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02701",
+      "a_code": "300077",
+      "company_name": "国民技术股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "01989",
+      "a_code": "001389",
+      "company_name": "广州广合科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "03268",
+      "a_code": "002881",
+      "company_name": "美格智能技术股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02715",
+      "a_code": "002747",
+      "company_name": "南京埃斯顿自动化股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02692",
+      "a_code": "003021",
+      "company_name": "深圳市兆威机电股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "09981",
+      "a_code": "002130",
+      "company_name": "深圳市沃尔核材股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "00470",
+      "a_code": "300450",
+      "company_name": "无锡先导智能装备股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "06809",
+      "a_code": "688008",
+      "company_name": "澜起科技股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "03200",
+      "a_code": "301200",
+      "company_name": "深圳市大族数控科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02714",
+      "a_code": "002714",
+      "company_name": "牧原食品股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02768",
+      "a_code": "002768",
+      "company_name": "青岛国恩科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "09980",
+      "a_code": "605499",
+      "company_name": "东鹏饮料（集团）股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "09611",
+      "a_code": "603341",
+      "company_name": "上海龙旗科技股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "03986",
+      "a_code": "603986",
+      "company_name": "兆易创新科技集团股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "00501",
+      "a_code": "603501",
+      "company_name": "豪威集成电路（集团）股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02691",
+      "a_code": "603093",
+      "company_name": "南华期货股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02676",
+      "a_code": "688052",
+      "company_name": "苏州纳芯微电子股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02579",
+      "a_code": "300919",
+      "company_name": "中伟新材料股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "00699",
+      "a_code": "600699",
+      "company_name": "宁波均胜电子股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "09927",
+      "a_code": "601127",
+      "company_name": "赛力斯集团股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "06166",
+      "a_code": "603083",
+      "company_name": "上海剑桥科技股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "06031",
+      "a_code": "600031",
+      "company_name": "三一重工股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "00638",
+      "a_code": "300638",
+      "company_name": "深圳市广和通无线股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02631",
+      "a_code": "688234",
+      "company_name": "山东天岳先进科技股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "06613",
+      "a_code": "300433",
+      "company_name": "蓝思科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "01304",
+      "a_code": "688279",
+      "company_name": "峰岹科技（深圳）股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02648",
+      "a_code": "603345",
+      "company_name": "安井食品集团股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02050",
+      "a_code": "002050",
+      "company_name": "浙江三花智能控制股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "03288",
+      "a_code": "603288",
+      "company_name": "佛山市海天调味食品股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "02603",
+      "a_code": "002803",
+      "company_name": "厦门吉宏科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "01276",
+      "a_code": "600276",
+      "company_name": "江苏恒瑞医药股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "03750",
+      "a_code": "300750",
+      "company_name": "宁德时代新能源科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02865",
+      "a_code": "002865",
+      "company_name": "海南钧达新能源科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "06693",
+      "a_code": "600988",
+      "company_name": "赤峰吉隆黄金矿业股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "06936",
+      "a_code": "002352",
+      "company_name": "顺丰控股股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02465",
+      "a_code": "603906",
+      "company_name": "江苏龙蟠科技股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "00300",
+      "a_code": "000333",
+      "company_name": "美的集团股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "02402",
+      "a_code": "688339",
+      "company_name": "北京亿华通科技股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "01880",
+      "a_code": "601888",
+      "company_name": "中国旅游集团中免股份有限公司 - H 股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "09696",
+      "a_code": "002466",
+      "company_name": "天齐锂业股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "06655",
+      "a_code": "600801",
+      "company_name": "华新水泥股份有限公司 - H股",
+      "exchange_hint": "SH"
+    },
+    {
+      "hk_code": "06680",
+      "a_code": "300748",
+      "company_name": "江西金力永磁科技股份有限公司 - H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "06821",
+      "a_code": "002821",
+      "company_name": "凯莱英医药集团(天津)股份有限公司- H股",
+      "exchange_hint": "SZ"
+    },
+    {
+      "hk_code": "06127",
+      "a_code": "603127",
+      "company_name": "北京昭衍新药研究中心股份有限公司",
+      "exchange_hint": "SH"
+    }
+  ],
+  "pipeline_candidates": []
+}
