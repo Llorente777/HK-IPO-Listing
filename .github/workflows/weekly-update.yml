@@ -14,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: weekly-official-data-update
+  group: ${{ inputs.refresh_official && 'weekly-official-data-update' || 'saved-baseline-validation' }}
   cancel-in-progress: false
 
 jobs:
