@@ -10,7 +10,7 @@ const roots=['app','lib','build','db','drizzle','scripts','tests','public','work
 const files=['.github/workflows/weekly-update.yml','.gitignore','.openai/hosting.json','README.md',
   'package.json','pnpm-lock.yaml','pnpm-workspace.yaml','requirements.txt','next-env.d.ts','next.config.ts','tsconfig.json',
   'vite.config.ts','vitest.config.ts','drizzle.config.ts','postcss.config.mjs','eslint.config.mjs',
-  'docs/METHODOLOGY.md','docs/SOURCES.md','docs/CLOUD_UPDATE.md','data/reference/pipeline_intelligence.json',
+  'docs/METHODOLOGY.md','docs/SOURCES.md','docs/CLOUD_UPDATE.md','docs/PIPELINE_WATCH.md','data/reference/pipeline_intelligence.json',
   ...['dashboard','pipeline_watch','pipeline_analytics','link_audit'].map(n=>`data/processed/${n}.json`)];
 function walk(dir) {for(const e of readdirSync(join(root,dir),{withFileTypes:true})) {
   if(e.isSymbolicLink())throw Error('Refusing symlink '+e.name);

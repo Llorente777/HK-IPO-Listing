@@ -42,7 +42,7 @@ export function checkUpdateClaims(claims: Claims, nowSeconds: number): UpdateIde
     `repo:Llorente777@${t.ownerId}/HK-IPO-Listing@${t.repositoryId}:ref:${t.ref}`,
   ];
   if (!subjects.includes(String(claims.sub)) || !['workflow_dispatch','schedule'].includes(String(claims.event_name))
-    || claims.job_workflow_ref != null) return reject();
+    || (claims.job_workflow_ref != null && claims.job_workflow_ref !== t.workflow)) return reject();
   const {iat,nbf,exp} = claims;
   if (![iat,nbf,exp,nowSeconds].every(v=>typeof v==='number' && Number.isFinite(v))) return reject();
   const issued=iat as number, notBefore=nbf as number, expires=exp as number;

@@ -10,6 +10,8 @@ const claims={iss:updateTrust.issuer,aud:updateTrust.audience,repository:updateT
 describe('cloud writer trust boundary',()=>{
   it('accepts fixed main workflow with immutable repository identity',()=>{
     expect(checkUpdateClaims(claims,now).runId).toBe('123');
+    // Actual GitHub-hosted runs also include job_workflow_ref for this same job.
+    expect(checkUpdateClaims({...claims,job_workflow_ref:updateTrust.workflow},now).runId).toBe('123');
   });
   it.each([
     ['repository_id','999'],['repository_owner_id','999'],['repository','other/repo'],
